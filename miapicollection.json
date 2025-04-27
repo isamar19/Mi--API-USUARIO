@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "Usuarios API",
+    "description": "Colección para probar los métodos de la API de usuarios",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Obtener todos los usuarios",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/usuario",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["usuario"]
+        }
+      }
+    },
+    {
+      "name": "Obtener un usuario por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/usuario/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["usuario", "1"]
+        }
+      }
+    },
+    {
+      "name": "Crear un nuevo usuario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"nombre\": \"Carlos\",\n    \"email\": \"carlos@ejemplo.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/usuario",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["usuario"]
+        }
+      }
+    },
+    {
+      "name": "Actualizar un usuario",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"nombre\": \"Carlos Actualizado\",\n    \"email\": \"carlos.actualizado@ejemplo.com\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/usuario/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["usuario", "1"]
+        }
+      }
+    },
+    {
+      "name": "Eliminar un usuario",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/usuario/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["usuario", "1"]
+        }
+      }
+    }
+  ]
+}
