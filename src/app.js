@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // Importar rutas
-const usuarioRoutes = require('./src/routes/usuario');
+const usuarioRoutes = require('./routes/usuario');
 
 // Middleware para analizar JSON
 app.use(express.json());
@@ -31,8 +31,27 @@ app.get('/', (req, res) => {
 });
 
 // Puerto de escucha
-const PORT = process.env.PORT || 3000;
+const DEFAULT_PORT = process.env.PORT || 3002;
 
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+function startServer(port) {
+    const server = app.listen(port, () => {
+        console.log(`Servidor corriendo en el puerto ${port}`);
 });
+
+server.on('error', (error) => {
+    if (error.code === 'EADDRINUSE') {
+    console.log(`El puerto ${port} está en uso, intentando con el 3002...`);
+    if (port !== 3002) {
+        startServer(3002);
+    } else {
+        console.error('Ya el puerto 3002 también está en uso. Cerrando...');
+        process.exit(1);
+    }
+    } else {
+    console.error('Error al iniciar el servidor:', error);
+    process.exit(1);
+    }
+});
+}
+
+startServer(DEFAULT_PORT);
